@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: zacharlie.github.io
-Token: 644c1c3db0d2bd90a61d51813d9084d31f4df0b5cdd4a42bb4a8336deb2bd24b
