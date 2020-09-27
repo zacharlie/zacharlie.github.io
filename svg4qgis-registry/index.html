@@ -1,14 +1,46 @@
 <head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap5.min.css" />
+
+<style>
+img.svg-preview {
+  border: 1px solid rgba(0,0,0,0.1);
+  display: block;
+  margin: auto;
+  width: 50px;
+  height: 50px
+}
+
+table {
+  width:100%;
+  border: 1px solid;
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+span.name-text {
+  font-style: italic;
+  font-weight: bold
+}
+
+span.description-text {
+  font-size: 0.8em
+}
+</style>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap5.min.js"></script>
 
 <script type="text/javascript">
   $(document).ready( function() {
     var dataObject = {}  // empty json object to use for data
     var imgUrl = "https://raw.githubusercontent.com/zacharlie/svg4qgis/master/svg/"
-    var wrapA = '<img style="display: block; margin: auto; width: 50px; height: 50px" src="'
+    var wrapA = '<img class="svg-preview" src="'
     var wrapB = '" />'
     $.ajax({
       type: 'GET',
@@ -32,13 +64,22 @@
         $('#table').DataTable({
           "data" : o,
           "columns" : [
-          { "title": "Name", data: 'name',
-            render: function ( data, type, row ) {
-              return wrapA + imgUrl + data + wrapB;
+            { "title": "Image", data: 'name',
+              render: function ( data, type, row ) {
+                return wrapA + imgUrl + data + wrapB;
+              }
+            },
+            { "title": "Name", data: 'name',
+              render: function ( data, type, row ) {
+                return '<span class="name-text">' + data + '</span>';
+              }
+            },
+            { "title": "Description", data: 'description',
+              render: function ( data, type, row ) {
+                return '<span class="description-text">' + data + '</span>';
+              }
             }
-          },
-          { "title": "Name", data: 'name' },
-          { "title": "Name", data: 'description' }]
+          ]
         });
       }
     });
@@ -47,8 +88,8 @@
 
 </head>
 <body>
-  <div>
-    <table id="table">
+  <div style="padding: 20px">
+    <table id="table" class="table table-striped table-bordered">
     </table>
   </div>
 </body>
