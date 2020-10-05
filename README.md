@@ -5,7 +5,7 @@ GitHub Pages site for zacharlie
 
 ## Sitemap
 
-* [site](zacharlie.github.io)
+* [site](https://zacharlie.github.io)
 * [repo](https://github.com/zacharlie/zacharlie.github.io)
 * [svg4qgis-registry](svg4qgis-registry)
 * [arcgis-rest-table](arcgis-rest-table)
