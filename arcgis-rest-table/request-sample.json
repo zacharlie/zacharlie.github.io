@@ -1,0 +1,234 @@
+{
+   "displayFieldName":"REGION",
+   "fieldAliases":{
+      "ObjectID":"ObjectID",
+      "REGION":"REGION",
+      "SQMI":"SQMI",
+      "SQKM":"SQKM"
+   },
+   "fields":[
+      {
+         "name":"ObjectID",
+         "type":"esriFieldTypeOID",
+         "alias":"ObjectID"
+      },
+      {
+         "name":"REGION",
+         "type":"esriFieldTypeString",
+         "alias":"REGION",
+         "length":21
+      },
+      {
+         "name":"SQMI",
+         "type":"esriFieldTypeDouble",
+         "alias":"SQMI"
+      },
+      {
+         "name":"SQKM",
+         "type":"esriFieldTypeDouble",
+         "alias":"SQKM"
+      }
+   ],
+   "features":[
+      {
+         "attributes":{
+            "ObjectID":0,
+            "REGION":"Antarctica",
+            "SQMI":4754809.4571000002,
+            "SQKM":12314949.24
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":1,
+            "REGION":"Asiatic Russia",
+            "SQMI":4987737.42459,
+            "SQKM":12918232.32
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":2,
+            "REGION":"Australia/New Zealand",
+            "SQMI":3077218.8749000002,
+            "SQKM":7969992.1915899999
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":3,
+            "REGION":"Caribbean",
+            "SQMI":89193.607139999993,
+            "SQKM":231011.30645
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":4,
+            "REGION":"Central America",
+            "SQMI":957692.30734000006,
+            "SQKM":2480421.6150000002
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":5,
+            "REGION":"Central Asia",
+            "SQMI":1612211.8378000001,
+            "SQKM":4175626.2004
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":6,
+            "REGION":"Eastern Africa",
+            "SQMI":2469288.5148,
+            "SQKM":6395453.4863900002
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":7,
+            "REGION":"Eastern Asia",
+            "SQMI":4460525.3679900002,
+            "SQKM":11552753.898
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":8,
+            "REGION":"Eastern Europe",
+            "SQMI":729308.96513999999,
+            "SQKM":1888909.1070900001
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":9,
+            "REGION":"European Russia",
+            "SQMI":1541719.0891,
+            "SQKM":3993050.0890000002
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":10,
+            "REGION":"Melanesia",
+            "SQMI":201643.97146,
+            "SQKM":522257.57844000001
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":11,
+            "REGION":"Micronesia",
+            "SQMI":997.02444000000003,
+            "SQKM":2582.29178
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":12,
+            "REGION":"Middle Africa",
+            "SQMI":2544043.5203,
+            "SQKM":6589068.8365000002
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":13,
+            "REGION":"Northern Africa",
+            "SQMI":3191543.3095900002,
+            "SQKM":8266092.3030000003
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":14,
+            "REGION":"Northern America",
+            "SQMI":8292642.5721000005,
+            "SQKM":21477931.609990001
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":15,
+            "REGION":"Northern Europe",
+            "SQMI":624503.91555999999,
+            "SQKM":1617464.1886
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":16,
+            "REGION":"Polynesia",
+            "SQMI":15861.08179,
+            "SQKM":41080.177620000002
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":17,
+            "REGION":"South America",
+            "SQMI":6856255.3355,
+            "SQKM":17757690.859000001
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":18,
+            "REGION":"Southeastern Asia",
+            "SQMI":1719540.09929,
+            "SQKM":4453606.2341
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":19,
+            "REGION":"Southern Africa",
+            "SQMI":1033183.3343,
+            "SQKM":2675943.2598000001
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":20,
+            "REGION":"Southern Asia",
+            "SQMI":2606398.3220000002,
+            "SQKM":6750567.6780000003
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":21,
+            "REGION":"Southern Europe",
+            "SQMI":503015.12202000001,
+            "SQKM":1302808.3986
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":22,
+            "REGION":"Western Africa",
+            "SQMI":2345404.0449000001,
+            "SQKM":6074592.8984000003
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":23,
+            "REGION":"Western Asia",
+            "SQMI":1774437.0079900001,
+            "SQKM":4595789.1438899999
+         }
+      },
+      {
+         "attributes":{
+            "ObjectID":24,
+            "REGION":"Western Europe",
+            "SQMI":423307.25384000002,
+            "SQKM":1096365.1417
+         }
+      }
+   ]
+}

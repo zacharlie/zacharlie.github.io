@@ -1,0 +1,93 @@
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap5.min.css" />
+
+<style>
+table {
+  width:100%;
+  border: 1px solid;
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+</style>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap5.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready( function() {
+    var dataObject = {}  // empty json object to use for data
+    $.ajax({
+      type: 'GET',
+      dataType: 'json',
+      
+      /* Useful Docs
+      https://developers.arcgis.com/rest/services-reference/query-feature-service-layer-.htm
+      https://pro.arcgis.com/en/pro-app/help/mapping/navigation/sql-reference-for-elements-used-in-query-expressions.htm
+      */
+      
+      // Small sample dataset
+      url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/WorldTimeZones/MapServer/2/query?f=json&where=ObjectID>=0&returnGeometry=false&outFields=*',
+      
+      // Specific fields - you can use this with a standard data table to ge specific columns and avoid the complicated dynamic field length structure
+      //url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/WorldTimeZones/MapServer/2/query?f=json&where=ObjectID>=0&returnGeometry=false&outFields=REGION,SQKM',
+
+      // Simple query subset
+      //url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/WorldTimeZones/MapServer/2/query?f=json&where="REGION" = \'Antarctica\'&returnGeometry=false&outFields=*',
+
+      // A more complex query
+      //url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/WorldTimeZones/MapServer/2/query?f=json&where="REGION" IN (\'Antarctica\',\'Caribbean\',\'Australia/New Zealand\') AND "SQKM">=500000&returnGeometry=false&outFields=*',
+
+      // Bigger sample dataset
+      //url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/3/query?f=json&where=ObjectID>=0&returnGeometry=false&outFields=*',
+
+      // Read local sample data (if not run through a web server, i.e. from local filesystem, the browser will likely throw a CORS error. If it doesn't, you probably have security issues and should upgrade your browser)
+      // An easy webserver workaround for python users is to open the root directory in your cli and use `python -m http.server --bind 127.0.0.1 9101`
+      // index.html should then be available at http://127.0.0.1:9101
+      //url: 'request-sample.json',
+
+      data: dataObject,
+      success: function callback(data) {  // data is the rest response json data
+
+        //console.log(data)
+
+		// create a new json array of only the response data "features" object
+        var o = '[]';  // new array
+        var o = JSON.parse(o);
+        var f = data.features;
+		// for each item in data.features append .attributes to new array
+        for (var i = 0; i < f.length; i++) {
+          o.push(f[i].attributes);
+        }
+
+        // Dynamically generate the table column values and titles from the input data fields
+		var cols = '[]'
+        var cols = JSON.parse(cols)
+        $.each( o[0], function(key, value) {
+          var data = key;
+          var title = key;
+          cols.push({data, title});
+        });
+
+        // Generate the DataTable
+		$('#table').DataTable({
+          "data" : o,
+          "columns" : cols
+        });
+      }
+    });
+  });
+</script>
+
+</head>
+<body>
+  <div style="padding: 20px">
+    <table id="table" class="table table-striped table-bordered">
+    </table>
+  </div>
+</body>
