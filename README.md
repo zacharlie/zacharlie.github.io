@@ -10,3 +10,4 @@ GitHub Pages site for zacharlie
 * [svg4qgis-registry](svg4qgis-registry)
 * [arcgis-rest-table](arcgis-rest-table)
 * [md-rendererer](md-rendererer)
+* [simple-html-gallery](simple-html-gallery)
