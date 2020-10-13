@@ -22,3 +22,5 @@ If you have a strong command of the English language, decent writing ability and
 Checkout the details on the QGIS Wiki: [github.com/qgis/QGIS/wiki/Changelog-Workflows](https://github.com/qgis/QGIS/wiki/Changelog-Workflows#conventions-for-changelog-entries)
 
 [![Charlies github stats](https://github-readme-stats.vercel.app/api?username=zacharlie&count_private=true&show_icons=true&theme=graywhite)](https://github.com/anuraghazra/github-readme-stats)
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=zacharlie&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
