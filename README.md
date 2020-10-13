@@ -2,8 +2,6 @@
 
 GitHub Pages site for zacharlie
 
-[![Charlies github stats](https://github-readme-stats.vercel.app/api?username=zacharlie&count_private=true&show_icons=true&theme=graywhite)](https://github.com/anuraghazra/github-readme-stats)
-
 ![Loading](10-Seconds-Loading.gif)
 
 ## Sitemap
@@ -22,3 +20,5 @@ Keen on contributing to Open Source?
 If you have a strong command of the English language, decent writing ability and can follow along with the technical details for new functionality introduced in the worlds leading Open Source GIS, you can help me with maintaining the QGIS Changelog.
 
 Checkout the details on the QGIS Wiki: [github.com/qgis/QGIS/wiki/Changelog-Workflows](https://github.com/qgis/QGIS/wiki/Changelog-Workflows#conventions-for-changelog-entries)
+
+[![Charlies github stats](https://github-readme-stats.vercel.app/api?username=zacharlie&count_private=true&show_icons=true&theme=graywhite)](https://github.com/anuraghazra/github-readme-stats)
