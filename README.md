@@ -6,8 +6,9 @@ GitHub Pages site for [zacharlie](https://github.com/zacharlie)
 
 ## Sitemap
 
-* [site](https://zacharlie.github.io)
-* [repo](https://github.com/zacharlie/zacharlie.github.io)
+* [this.site](https://zacharlie.github.io)
+* [this.repo](https://github.com/zacharlie/zacharlie.github.io)
+* [website](https://devpages.pages.dev/)
 * [awesome-geodata](https://github.com/kartoza/awesome-geodata)
 * [pages-demo](https://zacharlie.github.io/pages-demo/)
 * [silver-spork](https://zacharlie.github.io/silver-spork)
