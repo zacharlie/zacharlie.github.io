@@ -8,6 +8,7 @@ GitHub Pages site for [zacharlie](https://github.com/zacharlie)
 
 * [site](https://zacharlie.github.io)
 * [repo](https://github.com/zacharlie/zacharlie.github.io)
+* [pages-demo](https://github.com/zacharlie/pages-demo)
 * [pyqgist](https://zacharlie.github.io/pyqgist/)
 * [geogist](https://zacharlie.github.io/geogist/)
 * [svg4qgis-registry](svg4qgis-registry)
