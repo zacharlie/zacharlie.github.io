@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REPList</title>
+    <style>
+        .code-outputs {
+            color: gray;
+        }
+        .code-returns {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="intro" style="width:100%">
+        <p>This is a javascript REPL (Read Eval Print Loop) that is basically as simple as it gets,
+            and works kinda like a browser console with a simplified history.</p>
+        <p>It's mainly useful for learning, teaching, and creating documentation.</p>
+        <p>It's also a handyish reference for how to make simple interactive coding exercises/ demos with vanilla html5.</p>
+        <p>For most users, you're probably better off with the browsers built in console (press F12).</p>
+        <p>If you want a proper browser based terminal, check out https://xtermjs.org/</p>
+    </div>
+    <div id="notice" style="width:100%">
+        <p>WARNING! This page uses eval().
+            If you don't know what that means, please see
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#never_use_eval!">Never use eval()!</a>
+        </p>
+    </div>
+    <div id="wrapper">
+        <div id="input" style="width:100%">
+            <textarea style="width:100%" name="input-string" id="input-string" cols="30" rows="10">console.log("hello world");</textarea>
+        </div>
+        <hr>
+        <div id="input" style="width:100%">
+            <button style="width:100%" onclick="evalInput(document.getElementById('input-string').value)">RUN</button>
+        </div>
+        <hr>
+        <div id="input" style="width:100%">
+            <div id="code" style="width:100%"></div>
+        </div>
+    </div>
+    <script>
+        /* at the start of the script we will override the console.log function
+           and push all console messages to an array we manage in the app context
+        */
+        const consoleStorage = []
+
+        console.log = function(msg){
+            consoleStorage.push(msg);
+            console.warn(msg); // if you need to print the output
+        }
+
+        // eval content and write output
+        function evalInput(inputs) {
+          results = eval(inputs)  // evaluate code and get results
+          // print console log results
+          consoleStorage.forEach(item => {document.getElementById("code").innerHTML += '<div class="code-outputs">' + item + '</div>'})
+          document.getElementById("code").innerHTML += '<div class="code-returns">' + results + '</div>'
+          consoleStorage.length = 0  // reset console log history
+        }
+    </script>
+</body>
+</html>
