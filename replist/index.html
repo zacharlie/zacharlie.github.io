@@ -6,7 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REPList</title>
     <style>
-        .code-outputs {
+        body {
+            padding: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+        .full-width {
+            width:100%
+        }
+        .code-input {
+            font-family: Menlo, Consolas, "Ubuntu Mono",
+              "Roboto Mono", "DejaVu Sans Mono",
+              monospace;
+            width:100%;
+            background: #efefef;
+            border-radius: 4px;
+        }
+        .run-button {
+            width:100%
+        }
+        .code-output {
+            overflow: auto;
+            min-height: 10rem;
+            max-height: 50vh;
+            font-family: Menlo, Consolas, "Ubuntu Mono",
+              "Roboto Mono", "DejaVu Sans Mono",
+              monospace;
+            background: #555;
+            border-radius: 4px;
+        }
+        .code-lines {
             color: gray;
         }
         .code-returns {
@@ -15,33 +43,43 @@
     </style>
 </head>
 <body>
-    <div id="intro" style="width:100%">
+    <h1>REPL</h1>
+    <div id="intro" class="full-width">
         <p>This is a javascript REPL (Read Eval Print Loop) that is basically as simple as it gets,
             and works kinda like a browser console with a simplified history.</p>
         <p>It's mainly useful for learning, teaching, and creating documentation.</p>
         <p>It's also a handyish reference for how to make simple interactive coding exercises/ demos with vanilla html5.</p>
         <p>For most users, you're probably better off with the browsers built in console (press F12).</p>
-        <p>If you want a proper browser based terminal, check out https://xtermjs.org/</p>
+        <p>If you want a proper browser based terminal, check out
+            <a href="https://xtermjs.org/">xtermjs</a>.</p>
     </div>
-    <div id="notice" style="width:100%">
+    <div id="notice" class="full-width">
         <p>WARNING! This page uses eval().
             If you don't know what that means, please see
             <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#never_use_eval!">Never use eval()!</a>
         </p>
     </div>
-    <div id="wrapper">
-        <div id="input" style="width:100%">
-            <textarea style="width:100%" name="input-string" id="input-string" cols="30" rows="10">console.log("hello world");</textarea>
+        <div id="input" class="full-width">
+            <textarea class="code-input" name="input-string" id="input-string" rows="10">
+console.log("hello world");
+
+function addOne(value) {
+    value += 1
+    return value
+};
+let x = 12;
+addOne(x);</textarea>
         </div>
         <hr>
-        <div id="input" style="width:100%">
-            <button style="width:100%" onclick="evalInput(document.getElementById('input-string').value)">RUN</button>
+        <div id="input" class="full-width">
+            <button type="button" class="button run-button"
+              onclick="evalInput(document.getElementById('input-string').value)"
+            >RUN</button>
         </div>
         <hr>
-        <div id="input" style="width:100%">
-            <div id="code" style="width:100%"></div>
+        <div id="input" class="full-width">
+            <div id="code" class="code-output"></div>
         </div>
-    </div>
     <script>
         /* at the start of the script we will override the console.log function
            and push all console messages to an array we manage in the app context
@@ -55,10 +93,12 @@
 
         // eval content and write output
         function evalInput(inputs) {
-          results = eval(inputs)  // evaluate code and get results
+          results = eval(`${inputs}`)  // evaluate code and get results
           // print console log results
-          consoleStorage.forEach(item => {document.getElementById("code").innerHTML += '<div class="code-outputs">' + item + '</div>'})
-          document.getElementById("code").innerHTML += '<div class="code-returns">' + results + '</div>'
+          consoleStorage.forEach(item => {document.getElementById("code").innerHTML += '<div class="code-lines">' + item + '</div>'})
+          let codeblock = document.getElementById("code")
+          codeblock.innerHTML += '<div class="code-returns">' + results + '</div>'
+          codeblock.scrollTo({top: codeblock.scrollHeight})
           consoleStorage.length = 0  // reset console log history
         }
     </script>
