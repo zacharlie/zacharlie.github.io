@@ -63,7 +63,7 @@
       function markup(){
         var content = document.getElementById('content').value;
         var output = document.getElementById('output');
-        output.innerHTML = marked(content);
+        output.innerHTML = marked.parse(content);
         tocbot.refresh();
         }
     </script>
