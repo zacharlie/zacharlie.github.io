@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>EV Tool</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Exposure Value Calculator">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <style>
+  .list-group-item.active {
+      background-color: grey;
+      border-color: grey;
+  }
+  a {
+      color: grey;
+  }
+  a:hover {
+      color: #303030
+  }
+  a.anchor { 
+      display: block;
+	  position: relative;
+      margin-top: -120px; 
+      height: 120px; 
+      visibility: hidden; 
+  }
+  body {
+      font: 400 15px Lato, sans-serif;
+      line-height: 1.8;
+      color: #818181;
+  }
+  h2 {
+      font-size: 24px;
+      text-transform: uppercase;
+      color: #303030;
+      font-weight: 600;
+      margin-bottom: 30px;
+  }
+  h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      color: #303030;
+      font-weight: 400;
+      margin-bottom: 30px;
+  }  
+  .jumbotron:hover {
+      cursor: default;
+  }
+  .jumbotron {
+      border-radius: 0px;
+      background-color: grey;
+      color: #fff;
+      padding: 200px 25px;
+      font-family: Montserrat, sans-serif;
+  }
+  .container-fluid {
+      padding: 60px 50px;
+  }
+  .bg-grey {
+      background-color: #f6f6f6;
+  }
+  .logo-small {
+      color: grey;
+      font-size: 50px;
+  }
+  .logo {
+      color: grey;
+      font-size: 200px;
+  }
+  .thumbnail {
+      padding: 0 0 15px 0;
+      border: none;
+      border-radius: 0;
+  }
+  .thumbnail img {
+      width: 100%;
+      height: 100%;
+      margin-bottom: 10px;
+  }
+  .carousel-control.right, .carousel-control.left {
+      background-image: none;
+      color: grey;
+  }
+  .carousel-indicators li {
+      border-color: grey;
+  }
+  .carousel-indicators li.active {
+      background-color: grey;
+  }
+  .item h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      font-weight: 400;
+      font-style: italic;
+      margin: 70px 0;
+  }
+  .item span {
+      font-style: normal;
+  }
+  .panel {
+      border: 1px solid grey; 
+      border-radius:0 !important;
+      transition: box-shadow 0.5s;
+  }
+  .panel:hover {
+      box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+  }
+  .panel-footer .btn:hover {
+      border: 1px solid grey;
+      background-color: #fff !important;
+      color: grey;
+  }
+  .panel-heading {
+      color: #fff !important;
+      background-color: grey !important;
+      padding: 25px;
+      border-bottom: 1px solid transparent;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+  }
+  .panel-footer {
+      background-color: white !important;
+  }
+  .panel-footer h3 {
+      font-size: 32px;
+  }
+  .panel-footer h4 {
+      color: #aaa;
+      font-size: 14px;
+  }
+  .panel-footer .btn {
+      margin: 15px 0;
+      background-color: grey;
+      color: #fff;
+  }
+  .navbar {
+      margin-bottom: 0;
+      background-color: grey;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+  }
+  .navbar-nav > li {
+      padding-left: 15px;
+  }
+  footer .glyphicon {
+      font-size: 25px;
+      margin-bottom: 20px;
+	  text-decoration: none;
+      color: grey;
+  }
+  footer a.glyphicon:hover {
+	  color: #303030;
+	  text-decoration: none;
+  }
+  .slideanim {visibility:hidden;}
+  .slide {
+      animation-name: slide;
+      -webkit-animation-name: slide;
+      animation-duration: 1s;
+      -webkit-animation-duration: 1s;
+      visibility: visible;
+  }
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+  @-webkit-keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+    .btn-lg {
+        width: 100%;
+        margin-bottom: 35px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .logo {
+        font-size: 150px;
+    }
+  }
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-dark fixed-top navbar-expand-lg">
+  <div class="container">
+      <a class="navbar-brand" href="#"><span><img src="data:image/png;base64,
+      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
+      ==" alt="Logo" height="42" width="42"> EV Tool</span></a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon" style="color: white;"></span>
+	  </button>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="myNavbar">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a href="#evcalc-go">CALCULATOR</a></li>
+        <li class="nav-item"><a href="#evcalc-table">GUIDELINES</a></li>
+		<li class="nav-item"><a href="#evcalc-camstuff">ACCESSORIES</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <h1 id="go">EV TOOL</h1> 
+  <p>Exposure Value Calculator</p> 
+</div>
+
+<!-- Container (Exposure Value Calculator) -->
+<div id="evcalc" class="container-fluid bg-grey">
+<a class="anchor" id="evcalc-go"></a>
+  <div class="row">
+    <div class="col-12" style="text-align: center;">
+
+		<script type="text/javascript">
+		
+		function calc() {
+		// define variables
+			// aperture
+			var f=document.getElementById("fstop").value.replace(",",".");
+			// iso
+			var i=document.getElementById("iso").value.replace(",",".");
+			// time
+			var t=document.getElementById("time").value.replace(",",".");
+			// exposure
+			var ev=document.getElementById("ev").value.replace(",",".");
+			
+			// calculate(f,i,t,ev);
+			
+		// account for fractions of a second
+			// define whether there are fractions
+			var frac=new RegExp("/");
+			// check the results
+			var res=frac.test(t);
+			
+			// if fractions, convert to decimal then calculate, else calculate
+			if (res){
+				t = eval(t);
+				calculate(f,i,t,ev);
+			} else {
+			calculate(f,i,t,ev);
+			}
+			
+			// replace 'NaN' - not a number
+			repnan();
+		}
+			
+		function calculate(w,x,y,z) {
+			z=log2(100*w*w/x/y);
+			z*=10;
+			z=Math.round(z);
+			z/=10;
+			document.getElementById("ev").value=z;
+		}
+		
+		function log2(x) {
+			return Math.log(x)/Math.log(2);
+		}
+		
+		// replace 'NaN' - not a number error
+		function repnan() {
+		
+		// var msg="Invalid. Please use numbers or fractions with a forward slash '/' only.";
+		var msg="Invalid";
+		
+		var nan=document.getElementById("ev").value;
+		
+			if (isNaN(nan)) {
+				document.getElementById("ev").value=msg;
+			}
+			
+		}
+		</script>
+		
+		<div class="content">
+		<h2>Exposure Value Calculator</h2>
+		<form onsubmit="return false">
+			<table class="table">
+				<tr><td>Aperture (&#402;/)</td></tr>
+				<tr><td><input id="fstop" class="input" style="text-align: center;" value="6.3"></td></tr>
+				<tr><td>ISO</td></tr>
+				<tr><td><input id="iso" class="input" style="text-align: center;" value="100"></td></tr>
+				<tr><td>Time (s)</td></tr>
+				<tr><td><input id="time" class="input" style="text-align: center;" value="1/1000"></td></tr>
+				<tr><td style="text-align: center; font-weight: 900;">Exposure (EV<sub>100</sub>)</td></tr>
+				<tr><td style="text-align: center; font-weight: 900;"><output name="EV" id="ev">15.3</td></tr>
+			<tr><td>
+				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#EVcalcInfo" style="text-align: center; width: 100%; max-width: 400px; padding 10%;">Info</button>
+			</tr></td>
+			<tr><td>
+				<input class="btn btn-warning" type="reset" value="Reset Defaults" style="text-align: center; width: 100%; max-width: 400px; padding 10%;">
+			</tr></td>
+			<tr><td>
+				<input class="btn btn-success" type="submit" value="Calculate" onclick="calc()" style="text-align: center; width: 100%; max-width: 400px; padding 10%;">
+			</tr></td>
+				<tr><td></td></tr>
+			</table>
+		</form>
+		</div>
+		
+    </div>
+  </div>
+</div>
+
+<!-- Container (Exposure Value Calculator Modals) -->
+<div class="modal fade" id="EVcalcInfo" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="margin-top: 15%;">
+      <div class="modal-header">
+        <h4 class="modal-title">EV Calculator Info</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <p>
+			The formula for this calculation is:
+			<strong><br>EV = log<sub>2</sub>(100*&#402;&sup2;/(ISO*time))</strong>
+			<br><a href="https://rechneronline.de/exposure/"><i>formula source</i></a>
+			<!-- alternative logic http://endoflow.com/exposure/ -->
+			<!-- alternative logic https://github.com/blakek/ev-calc Math.log2(fStop ** 2) + Math.log2(1 / exposureTime) - Math.log2(sensitivity / 100) -->
+			<br>It hasn't yet been mathematically verified in accordance to the information detailed below, but it does seem to work in accordance with other online calculators.
+			<strong><br>EV = log<sub>2</sub>(&#402;&sup2;/t)</strong>
+			<br><a href="https://en.wikipedia.org/wiki/Exposure_value"><i>wikipedia</i></a>
+			<br>Correct Exposure Calculation ISO 2720:1974
+			<strong><br>(N<sup>2</sup>/t)=(LS/K)</strong>
+			<br>Correction for ISO
+			<strong><br>EV<sub>100</sub> = EV<sub>S</sub>-log<sub>2</sub>(S/100)</strong>
+		</p>
+		<ul style="text-align: left;">
+			<p>
+				<strong>Key:</strong>
+			</p>
+			<li>
+			N = Relative aperture (&#402; or f-number)
+			</li>
+			<li>
+			t = Exposure time (shutter speed) in seconds
+			</li>
+			<li>
+			L = Luminance (average of scene)
+			</li>
+			<li>
+			S = ISO number, sensitivity or 'speed'
+			</li>
+			<li>
+			K = Reflected-light meter calibration constant (ISO 2720:1974 recommends 10.6 to 13.4 cd/m<sup>2</sup>)
+			</li>
+		</ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Container (EV Guideline Table) -->
+<div id="about" class="container-fluid">
+<a class="anchor" id="evcalc-table"></a>
+  <div class="row">
+    <div class="col-sm-3" style="text-align: center;">
+	</div>
+    <div class="col-sm-6" style="text-align: center;">
+      <h4>Recommended Exposure Guidelines</h4><br>
+	  <table class="table">
+	    <tr><th style="text-align: left;">Lighting Conditions							</th><th style="text-align: center;">EV      </th></tr>
+	    <tr><td style="text-align: left;">Harsh Sun/ Snow								</td><td>16      </td></tr>
+	    <tr><td style="text-align: left;">Full Sun										</td><td>14 to 15</td></tr>
+	    <tr><td style="text-align: left;">Clouds										</td><td>13      </td></tr>
+	    <tr><td style="text-align: left;">Overcast/ Sunrise/ Sunset						</td><td>12      </td></tr>
+	    <tr><td style="text-align: left;">Dusk/ Dawn									</td><td>5 to 11 </td></tr>
+	    <tr><td style="text-align: left;">Night - Bright								</td><td>7 to 8  </td></tr>
+	    <tr><td style="text-align: left;">Indoors/ Artificial Light						</td><td>5 to 8  </td></tr>
+	    <tr><td style="text-align: left;">Night - Light									</td><td>5       </td></tr>
+	    <tr><td style="text-align: left;">Night - Low Light								</td><td>2 to 3  </td></tr>
+	    <tr><td style="text-align: left;">Night - Full Moon								</td><td>-2      </td></tr>
+	    <tr><td style="text-align: left;">Night - Half Moon								</td><td>-4      </td></tr>
+	    <tr><td style="text-align: left;">Night, dark landscape at new moon				</td><td>-6 to -8</td></tr>
+	    <tr><td style="text-align: left;">Stars											</td><td>-3 to -9</td></tr>
+	    <tr><td style="text-align: left;">Celestial/ Long Exposures						</td><td><-10    </td></tr>
+      </table>
+      <p>No Guarantees Kids.</p>
+    </div>
+    <div class="col-sm-3" style="text-align: center;">
+	</div>
+  </div>
+</div>
+
+<!-- Container (Camera Stuffs) -->
+<div id="about" class="container-fluid bg-grey">
+<a class="anchor" id="evcalc-camstuff"></a>
+  <div class="row">    
+    <div class="col-12">
+	<h2 style="text-align:center;">Camera Stuffs</h2>
+    </div>
+	
+    <div class="col-4">
+      <div class="list-group" id="list-tab" role="tablist">
+        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
+        <a class="list-group-item list-group-item-action" id="list-nd-list" data-toggle="list" href="#list-nd" role="tab" aria-controls="nd">ND Filters</a>
+        <a class="list-group-item list-group-item-action" id="list-pol-list" data-toggle="list" href="#list-pol" role="tab" aria-controls="pol">Polarisers</a>
+        <a class="list-group-item list-group-item-action" id="list-strobe-list" data-toggle="list" href="#list-strobe" role="tab" aria-controls="strobe">Strobes</a>
+        <a class="list-group-item list-group-item-action" id="list-hot-list" data-toggle="list" href="#list-hot" role="tab" aria-controls="hot">Hot Mirrors</a>
+        <a class="list-group-item list-group-item-action" id="list-cold-list" data-toggle="list" href="#list-cold" role="tab" aria-controls="cold">Cold Mirrors</a>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">Camera Stuffs List. Select an item to find out more about it.</div>
+        <div class="tab-pane fade" id="list-nd" role="tabpanel" aria-labelledby="list-nd-list">Neutral Density, or "ND" filters are darkened camera lens attachments that fit over the front of a lens to reduce the amount of light that enters a camera. This is handy if you want to use specific settings (such as a large aperture) that aren't suited to the environment or lighting conditions that you're shooting in. In a pinch, a fine mesh or stretched stocking can do the trick.</div>
+        <div class="tab-pane fade" id="list-pol" role="tabpanel" aria-labelledby="list-pol-list">Polarising filters reduce reflected light, resulting in deeper color saturation and less reflections. Useful for shooting through windows or over water surfaces, they can sometimes drop a couple stops of exposure from a bright scene, but it's usually worth it. They work best at specific angles, so the amount of polarisation can vary across the scene when using wide angle lenses or shooting in indirect light (like at sunset).</div>
+        <div class="tab-pane fade" id="list-strobe" role="tabpanel" aria-labelledby="list-strobe-list">Strobes are flashes. They throw out intense light and professional ones can usually be configured to trigger for a specific time for a specific light intensity. When using them, make sure your shutter and the strobe trigger at the same time or your camera won't capture the light from the strobe.</div>
+        <div class="tab-pane fade" id="list-hot" role="tabpanel" aria-labelledby="list-hot-list">Hot Mirrors are essentially infrared filters which reflect longer wavelengths of light but allow shorter wavelengths to pass through them. Most modern digital cameras have hot mirrors to prevent IR from contaminating the image.</div>
+        <div class="tab-pane fade" id="list-cold" role="tabpanel" aria-labelledby="list-cold-list">Cold Mirrors work inversely to cold mirrors, allowing you to capture infrared while reflecting away the Visible Light.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer id="footer" class="container-fluid text-center">
+  <div class="col-sm-12">
+    <a href="#"  class="glyphicon" title="To Top">&#11165;</a>
+	<br>
+    <a href="https://www.linkedin.com/in/themrcharles" title="The Mr Charles">
+	  <p>&copy;<script>new Date().getFullYear()&&document.write(" "+new Date().getFullYear());</script> Your friendly neighbourhood Charlie Brown</p>
+	</a>
+  </div>
+</footer>
+
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#']").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+  
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+    });
+  });
+})
+</script>
+
+</body>
+</html>
